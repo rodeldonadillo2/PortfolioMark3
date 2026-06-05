@@ -242,6 +242,31 @@
       if (window.innerWidth > 1000 && !beltPaused) beltStart();
       else beltStop();
     });
+
+    // Center-grow: highlight the card closest to belt center
+    const beltCards = belt.querySelectorAll(".work-card");
+
+    function updateCenterCard() {
+      const beltCenter = belt.scrollLeft + belt.clientWidth / 2;
+      let closestCard = null;
+      let closestDist = Infinity;
+
+      beltCards.forEach((card) => {
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const dist = Math.abs(cardCenter - beltCenter);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closestCard = card;
+        }
+      });
+
+      beltCards.forEach((c) => c.classList.remove("work-card--center"));
+      if (closestCard) closestCard.classList.add("work-card--center");
+    }
+
+    updateCenterCard();
+    belt.addEventListener("scroll", updateCenterCard, { passive: true });
+    window.addEventListener("resize", updateCenterCard, { passive: true });
   }
 
   /* =========================================================
