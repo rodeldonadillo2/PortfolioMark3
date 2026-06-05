@@ -234,15 +234,19 @@
       return first.offsetWidth + gap;
     }
 
+    function arrowScroll(direction) {
+      beltStop();
+      belt.scrollBy({ left: direction * getScrollStep(), behavior: "smooth" });
+      setTimeout(() => {
+        if (window.innerWidth > 1000 && !beltPaused) beltStart();
+      }, 600);
+    }
+
     if (arrowLeft) {
-      arrowLeft.addEventListener("click", () => {
-        belt.scrollBy({ left: -getScrollStep(), behavior: "smooth" });
-      });
+      arrowLeft.addEventListener("click", () => arrowScroll(-1));
     }
     if (arrowRight) {
-      arrowRight.addEventListener("click", () => {
-        belt.scrollBy({ left: getScrollStep(), behavior: "smooth" });
-      });
+      arrowRight.addEventListener("click", () => arrowScroll(1));
     }
 
     // Re-evaluate on resize
