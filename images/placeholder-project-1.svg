@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="550" viewBox="0 0 800 550">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8f8f8"/>
+      <stop offset="100%" stop-color="#ececec"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="550" fill="url(#bg)" rx="0"/>
+  <rect x="200" y="155" width="400" height="240" rx="12" fill="#d9d9d9" stroke="#c0c0c0" stroke-width="1"/>
+  <rect x="260" y="195" width="280" height="160" rx="4" fill="#c8c8c8"/>
+  <circle cx="230" cy="175" r="5" fill="#b0b0b0"/>
+  <circle cx="250" cy="175" r="5" fill="#b0b0b0"/>
+  <circle cx="270" cy="175" r="5" fill="#b0b0b0"/>
+  <rect x="300" y="260" width="200" height="30" rx="4" fill="#b8b8b8"/>
+  <line x1="260" y1="320" x2="540" y2="320" stroke="#c0c0c0" stroke-width="2"/>
+  <line x1="260" y1="335" x2="500" y2="335" stroke="#c0c0c0" stroke-width="2"/>
+  <text x="400" y="420" font-family="'SF Mono','Space Mono',monospace" font-size="16" fill="#8a8a8a" text-anchor="middle" font-weight="700">PROJECT 1</text>
+  <text x="400" y="445" font-family="'DM Sans',sans-serif" font-size="13" fill="#a0a0a0" text-anchor="middle">Screenshot placeholder</text>
+</svg>
