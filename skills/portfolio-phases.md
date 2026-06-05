@@ -231,6 +231,9 @@ Completed tasks:
 - All new elements added to JS scroll-reveal observer.
 - **Tab panel uses `display: none` when closed** — no white space below belt in neutral state. Opens with smooth fade+slide via forced-reflow JS pattern.
 - **Center-grow belt** — card closest to belt center scales up (1.06x) with gold border accent, creating a dynamic focal point during auto-scroll or manual navigation.
+- **Scale hierarchy carousel** — expanded from 3 to 8 cards with cascading sizes: featured (420px), medium (310px), small (250px). Featured card has gold "Featured" badge. Alternating medium/small pattern after the featured card.
+- **Arrow scroll fixed** — scroll step is now dynamic (computed from first card's offsetWidth + gap) instead of hardcoded 340px. Auto-scroll interval is stopped before smooth scroll to prevent animation conflict, restarted 600ms after click.
+- **12 placeholder SVGs created** — for all project tab panel sections (p4 through p8).
 
 Pending tasks (user-owned):
 

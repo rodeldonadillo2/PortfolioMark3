@@ -79,6 +79,58 @@ Briefly explain what changed.
 
 ## Journal Entries
 
+## June 6, 2026 - Scale hierarchy carousel: 8 cards, featured→medium→small sizing, arrow scroll fix
+
+**Status:** Done (on `feature/center-grow-belt` branch)
+
+### Summary
+Scaled the belt from 3 to 8 project cards with a cascading size hierarchy — the featured card is largest (420px), followed by medium (310px) and small (250px) cards in an alternating pattern. The right/left arrows were broken because they used a hardcoded 340px scroll step that no longer matched the variable card widths. Fixed by computing the step dynamically from the first card's offsetWidth + gap, and by stopping the auto-scroll interval during smooth scroll to prevent the two animations from fighting.
+
+### Changed
+- **HTML:** Replaced 3 project cards with 8. Featured card (project 1) gets `.work-card--featured` + gold "Featured" badge. Cards 2,4,6,8 get `.work-card--md`. Cards 3,5,7 get `.work-card--sm`.
+- **CSS (sizing):** Removed `flex: 0 0 calc((100% - 48px) / 3)` from base `.work-card`. Added per-class flex-basis — featured 420px, md 310px, sm 250px.
+- **CSS (badge):** Added `.work-card__featured-badge` — gold semi-transparent pill, top-left position, blurred backdrop, uppercase mono label.
+- **CSS (responsive):** At 1200px breakpoint — featured 340px, md 260px, sm 220px. At 760px — all cards go full width.
+- **JS (projectData):** Expanded from 3 to 8 entries with unique titles, tags, and section arrays for each project's tab panel.
+- **JS (arrow scroll):** Replaced hardcoded `340` with `getScrollStep()` — reads first card's `offsetWidth` + computed gap. Arrows now advance exactly one card regardless of size.
+- **JS (scroll conflict):** Arrow clicks now call `beltStop()` before `scrollBy({ behavior: "smooth" })`, and restart auto-scroll after 600ms via `setTimeout`. Prevents the 16ms interval from fighting the smooth scroll animation.
+- **Images:** Created 12 new placeholder SVGs in `images/` (p4-overview, p4-dashboard, p5-overview, p5-design, p5-perf, p6-overview, p6-api, p7-overview, p7-admin, p7-deploy, p8-overview, p8-graphql).
+
+### Why
+- User wanted a carousel where the first card looks featured (biggest), followed by medium and smaller cards, 8 total, in a looping belt
+- Arrows stopped working after the size change — the fixed 340px step was too small for the 420px featured card, and the smooth scroll fought with the auto-scroll interval
+
+### Files Affected
+- `index.html`
+- `css/style.css`
+- `js/main.js`
+- `images/p4-overview.svg` (new)
+- `images/p4-dashboard.svg` (new)
+- `images/p5-overview.svg` (new)
+- `images/p5-design.svg` (new)
+- `images/p5-perf.svg` (new)
+- `images/p6-overview.svg` (new)
+- `images/p6-api.svg` (new)
+- `images/p7-overview.svg` (new)
+- `images/p7-admin.svg` (new)
+- `images/p7-deploy.svg` (new)
+- `images/p8-overview.svg` (new)
+- `images/p8-graphql.svg` (new)
+- `skills/portfolio-journal.md`
+- `skills/portfolio-phases.md`
+
+### Decisions Made
+- **Size hierarchy:** Featured at 420px stands out clearly. Medium at 310px is the default "normal" card. Small at 250px recedes visually, creating perspective.
+- **Gap-based step:** `getScrollStep()` uses `offsetWidth + gap` so it always advances exactly one card, regardless of which card size is first in the flex order.
+- **Auto-scroll pause:** Stopping the interval before smooth scroll prevents the RAF-based interval from corrupting the browser's smooth scroll animation. 600ms timeout gives the smooth scroll time to finish before interval restarts.
+- **Placeholder images:** New SVGs follow the same template as the original p1-p3 images. Labeled per-project so the user can identify which image goes where when replacing.
+
+### Next Actions
+- User to replace placeholder images and URLs with real project data
+- User to replace profile photo and CV with real files
+
+---
+
 ## June 6, 2026 - Center-grow belt: card closest to center scales up
 
 **Status:** Done (on `feature/center-grow-belt` branch)
