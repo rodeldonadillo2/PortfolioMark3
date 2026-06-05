@@ -226,14 +226,22 @@
     const arrowLeft = document.querySelector(".work__arrow--left");
     const arrowRight = document.querySelector(".work__arrow--right");
 
+    function getScrollStep() {
+      const first = belt.querySelector(".work-card");
+      if (!first) return 340;
+      const style = getComputedStyle(belt);
+      const gap = parseFloat(style.gap) || 24;
+      return first.offsetWidth + gap;
+    }
+
     if (arrowLeft) {
       arrowLeft.addEventListener("click", () => {
-        belt.scrollBy({ left: -340, behavior: "smooth" });
+        belt.scrollBy({ left: -getScrollStep(), behavior: "smooth" });
       });
     }
     if (arrowRight) {
       arrowRight.addEventListener("click", () => {
-        belt.scrollBy({ left: 340, behavior: "smooth" });
+        belt.scrollBy({ left: getScrollStep(), behavior: "smooth" });
       });
     }
 
