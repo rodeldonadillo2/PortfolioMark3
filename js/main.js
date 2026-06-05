@@ -288,7 +288,7 @@
 
   const projectData = [
     {
-      title: "Project Name",
+      title: "Featured Project",
       tags: ["React", "Node.js", "CSS"],
       liveUrl: "Place_the_LIVE_URL_HERE",
       sourceUrl: "https://github.com/rodeldonadillo2",
@@ -311,7 +311,7 @@
       ]
     },
     {
-      title: "Project Name",
+      title: "Project Two",
       tags: ["HTML / CSS / JS", "API"],
       liveUrl: "Place_the_LIVE_URL_HERE",
       sourceUrl: "https://github.com/rodeldonadillo2",
@@ -329,7 +329,7 @@
       ]
     },
     {
-      title: "Project Name",
+      title: "Project Three",
       tags: ["React", "CRM Integration", "AI"],
       liveUrl: "Place_the_LIVE_URL_HERE",
       sourceUrl: "https://github.com/rodeldonadillo2",
@@ -349,6 +349,58 @@
           text: "Continue explaining more features — each section can show a different screenshot.",
           image: "images/p3-another.svg"
         }
+      ]
+    },
+    {
+      title: "Project Four",
+      tags: ["React", "Firebase"],
+      liveUrl: "Place_the_LIVE_URL_HERE",
+      sourceUrl: "https://github.com/rodeldonadillo2",
+      sections: [
+        { title: "Overview", text: "Explain the project at a high level — what it does, who it's for, and why you built it.", image: "images/p4-overview.svg" },
+        { title: "Dashboard", text: "Walk through the real-time dashboard built with Firebase Firestore.", image: "images/p4-dashboard.svg" }
+      ]
+    },
+    {
+      title: "Project Five",
+      tags: ["Next.js", "Tailwind"],
+      liveUrl: "Place_the_LIVE_URL_HERE",
+      sourceUrl: "https://github.com/rodeldonadillo2",
+      sections: [
+        { title: "Overview", text: "Explain the project at a high level — what it does, who it's for, and why you built it.", image: "images/p5-overview.svg" },
+        { title: "Design System", text: "Describe the reusable Tailwind component library you built.", image: "images/p5-design.svg" },
+        { title: "Performance", text: "Show the Lighthouse scores and optimisations applied.", image: "images/p5-perf.svg" }
+      ]
+    },
+    {
+      title: "Project Six",
+      tags: ["Vue", "Node.js"],
+      liveUrl: "Place_the_LIVE_URL_HERE",
+      sourceUrl: "https://github.com/rodeldonadillo2",
+      sections: [
+        { title: "Overview", text: "Explain the project at a high level — what it does, who it's for, and why you built it.", image: "images/p6-overview.svg" },
+        { title: "API Layer", text: "How the Node.js backend handles routing and data persistence.", image: "images/p6-api.svg" }
+      ]
+    },
+    {
+      title: "Project Seven",
+      tags: ["Python", "Django"],
+      liveUrl: "Place_the_LIVE_URL_HERE",
+      sourceUrl: "https://github.com/rodeldonadillo2",
+      sections: [
+        { title: "Overview", text: "Explain the project at a high level — what it does, who it's for, and why you built it.", image: "images/p7-overview.svg" },
+        { title: "Admin Panel", text: "The Django admin customisations that streamline content management.", image: "images/p7-admin.svg" },
+        { title: "Deployment", text: "CI/CD pipeline and hosting setup.", image: "images/p7-deploy.svg" }
+      ]
+    },
+    {
+      title: "Project Eight",
+      tags: ["React", "GraphQL"],
+      liveUrl: "Place_the_LIVE_URL_HERE",
+      sourceUrl: "https://github.com/rodeldonadillo2",
+      sections: [
+        { title: "Overview", text: "Explain the project at a high level — what it does, who it's for, and why you built it.", image: "images/p8-overview.svg" },
+        { title: "GraphQL API", text: "How Apollo Client queries a federated GraphQL schema.", image: "images/p8-graphql.svg" }
       ]
     }
   ];

@@ -598,9 +598,11 @@ textarea {
   display: none;
 }
 
+.work-card--featured { flex: 0 0 420px; }
+.work-card--md        { flex: 0 0 310px; }
+.work-card--sm        { flex: 0 0 250px; }
+
 .work-card {
-  flex: 0 0 calc((100% - 48px) / 3);
-  min-width: 280px;
   scroll-snap-align: start;
 }
 
@@ -700,6 +702,22 @@ textarea {
 
 .work-card:hover .work-card__thumb img {
   transform: scale(1.04);
+}
+
+.work-card__featured-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 3;
+  padding: 4px 12px;
+  border-radius: 4px;
+  background: rgba(201, 154, 62, 0.92);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
 }
 
 .work-card__thumb::after {
@@ -1445,9 +1463,9 @@ textarea {
     grid-template-columns: 1fr;
   }
 
-  .work-card {
-    flex: 0 0 calc((100% - 24px) / 2);
-  }
+  .work-card--featured { flex: 0 0 340px; }
+  .work-card--md        { flex: 0 0 260px; }
+  .work-card--sm        { flex: 0 0 220px; }
 
   .work-card__title {
     font-size: 1.7rem;
@@ -1577,7 +1595,9 @@ textarea {
     font-size: 2.8rem;
   }
 
-  .work-card {
+  .work-card--featured,
+  .work-card--md,
+  .work-card--sm {
     flex: 0 0 calc(100% - 48px);
     min-width: 260px;
   }
