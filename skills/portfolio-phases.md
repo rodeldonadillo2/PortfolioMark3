@@ -230,6 +230,7 @@ Completed tasks:
 - Tools & Stack section relocated to sit between Work and About.
 - All new elements added to JS scroll-reveal observer.
 - **Tab panel uses `display: none` when closed** — no white space below belt in neutral state. Opens with smooth fade+slide via forced-reflow JS pattern.
+- **Center-grow belt** — card closest to belt center scales up (1.06x) with gold border accent, creating a dynamic focal point during auto-scroll or manual navigation.
 
 Pending tasks (user-owned):
 

@@ -79,6 +79,36 @@ Briefly explain what changed.
 
 ## Journal Entries
 
+## June 6, 2026 - Center-grow belt: card closest to center scales up
+
+**Status:** Done (on `feature/center-grow-belt` branch)
+
+### Summary
+Added a scroll-based center detection that highlights the project card closest to the belt center. The centered card scales to 1.06x with a gold border accent and elevated shadow, creating a dynamic focal point as cards scroll through the belt. The `prototype-v2` branch was deleted after user review. `main` remains the clean base.
+
+### Changed
+- CSS: added `.work-card--center` with `scale(1.06)`, gold border, elevated shadow, `z-index: 2`
+- JS: added `updateCenterCard()` inside belt block — calculates card closest to belt center using `scrollLeft + clientWidth / 2`, toggles `.work-card--center` class
+- `updateCenterCard()` runs on belt scroll, window resize, and on init
+
+### Why
+- User wanted motion and hierarchy — the center card growing creates a natural focal point as the belt auto-scrolls or is manually navigated
+
+### Files Affected
+- `css/style.css`
+- `js/main.js`
+- `skills/portfolio-journal.md`
+
+### Decisions Made
+- Scroll-based calculation rather than IntersectionObserver — more precise control over which card is "center"
+- Card scales to 1.06x — noticeable but not jarring
+- Gold border accent ties into Equivalent Exchange visual identity
+
+### Next Actions
+- User to replace placeholder images and URLs with real project data
+
+---
+
 ## June 5, 2026 - Tab panel hidden when closed (removes empty white space below belt)
 
 **Status:** Done
