@@ -185,65 +185,107 @@
       <h2 class="section__title">Websites I've built</h2>
     </div>
 
-    <div class="work__grid">
-      <!-- Project 1 -->
-      <article class="work-card">
-        <div class="work-card__thumb">
-          <img src="images/placeholder-project-1.svg" alt="Project screenshot" loading="lazy" />
-        </div>
-        <div class="work-card__body">
-          <h3 class="work-card__title">Project Name</h3>
-          <p class="work-card__desc">Brief description of what this website does — the problem it solved and the tech used.</p>
-          <div class="work-card__tags">
-            <span class="work-card__tag">React</span>
-            <span class="work-card__tag">Node.js</span>
-            <span class="work-card__tag">CSS</span>
-          </div>
-          <div class="work-card__links">
-            <a href="Place_the_LIVE_URL_HERE" target="_blank" rel="noopener" class="work-card__btn">Live site →</a>
-            <a href="https://github.com/rodeldonadillo2" target="_blank" rel="noopener" class="work-card__btn work-card__btn--gh">Source ↗</a>
-          </div>
-        </div>
-      </article>
+    <div class="work__belt-wrap">
+      <button class="work__arrow work__arrow--left" aria-label="Scroll left">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
 
-      <!-- Project 2 -->
-      <article class="work-card">
-        <div class="work-card__thumb">
-          <img src="images/placeholder-project-2.svg" alt="Project screenshot" loading="lazy" />
-        </div>
-        <div class="work-card__body">
-          <h3 class="work-card__title">Project Name</h3>
-          <p class="work-card__desc">Brief description of what this website does — the problem it solved and the tech used.</p>
-          <div class="work-card__tags">
-            <span class="work-card__tag">HTML / CSS / JS</span>
-            <span class="work-card__tag">API</span>
+      <div class="work__grid">
+        <!-- Project 1 -->
+        <article class="work-card" data-project="1">
+          <div class="work-card__thumb">
+            <img src="images/placeholder-project-1.svg" alt="Project screenshot" loading="lazy" />
           </div>
-          <div class="work-card__links">
-            <a href="Place_the_LIVE_URL_HERE" target="_blank" rel="noopener" class="work-card__btn">Live site →</a>
-            <a href="https://github.com/rodeldonadillo2" target="_blank" rel="noopener" class="work-card__btn work-card__btn--gh">Source ↗</a>
+          <div class="work-card__body">
+            <h3 class="work-card__title">Project Name</h3>
+            <p class="work-card__desc">Brief description of what this website does — the problem it solved and the tech used.</p>
+            <div class="work-card__tags">
+              <span class="work-card__tag">React</span>
+              <span class="work-card__tag">Node.js</span>
+              <span class="work-card__tag">CSS</span>
+            </div>
+            <div class="work-card__links">
+              <a href="Place_the_LIVE_URL_HERE" target="_blank" rel="noopener" class="work-card__btn">Live site →</a>
+              <a href="https://github.com/rodeldonadillo2" target="_blank" rel="noopener" class="work-card__btn work-card__btn--gh">Source ↗</a>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- Project 3 -->
-      <article class="work-card">
-        <div class="work-card__thumb">
-          <img src="images/placeholder-project-3.svg" alt="Project screenshot" loading="lazy" />
-        </div>
-        <div class="work-card__body">
-          <h3 class="work-card__title">Project Name</h3>
-          <p class="work-card__desc">Brief description of what this website does — the problem it solved and the tech used.</p>
-          <div class="work-card__tags">
-            <span class="work-card__tag">React</span>
-            <span class="work-card__tag">CRM Integration</span>
-            <span class="work-card__tag">AI</span>
+        <!-- Project 2 -->
+        <article class="work-card" data-project="2">
+          <div class="work-card__thumb">
+            <img src="images/placeholder-project-2.svg" alt="Project screenshot" loading="lazy" />
           </div>
-          <div class="work-card__links">
-            <a href="Place_the_LIVE_URL_HERE" target="_blank" rel="noopener" class="work-card__btn">Live site →</a>
-            <a href="https://github.com/rodeldonadillo2" target="_blank" rel="noopener" class="work-card__btn work-card__btn--gh">Source ↗</a>
+          <div class="work-card__body">
+            <h3 class="work-card__title">Project Name</h3>
+            <p class="work-card__desc">Brief description of what this website does — the problem it solved and the tech used.</p>
+            <div class="work-card__tags">
+              <span class="work-card__tag">HTML / CSS / JS</span>
+              <span class="work-card__tag">API</span>
+            </div>
+            <div class="work-card__links">
+              <a href="Place_the_LIVE_URL_HERE" target="_blank" rel="noopener" class="work-card__btn">Live site →</a>
+              <a href="https://github.com/rodeldonadillo2" target="_blank" rel="noopener" class="work-card__btn work-card__btn--gh">Source ↗</a>
+            </div>
           </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="work-card" data-project="3">
+          <div class="work-card__thumb">
+            <img src="images/placeholder-project-3.svg" alt="Project screenshot" loading="lazy" />
+          </div>
+          <div class="work-card__body">
+            <h3 class="work-card__title">Project Name</h3>
+            <p class="work-card__desc">Brief description of what this website does — the problem it solved and the tech used.</p>
+            <div class="work-card__tags">
+              <span class="work-card__tag">React</span>
+              <span class="work-card__tag">CRM Integration</span>
+              <span class="work-card__tag">AI</span>
+            </div>
+            <div class="work-card__links">
+              <a href="Place_the_LIVE_URL_HERE" target="_blank" rel="noopener" class="work-card__btn">Live site →</a>
+              <a href="https://github.com/rodeldonadillo2" target="_blank" rel="noopener" class="work-card__btn work-card__btn--gh">Source ↗</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <button class="work__arrow work__arrow--right" aria-label="Scroll right">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+
+      <div class="work__belt-fade work__belt-fade--left" aria-hidden="true"></div>
+      <div class="work__belt-fade work__belt-fade--right" aria-hidden="true"></div>
+    </div>
+
+    <!-- Tab detail panel -->
+    <div class="work__tab-panel" id="workTabPanel">
+      <div class="work__tab-inner">
+        <div class="work__tab-image">
+          <img src="" alt="" />
         </div>
-      </article>
+        <div class="work__tab-body">
+          <h3 class="work__tab-title"></h3>
+          <div class="work__tab-tags"></div>
+          <div class="work__tab-sections">
+            <span class="work__tab-section-title"></span>
+            <p class="work__tab-section-text"></p>
+          </div>
+          <div class="work__tab-nav">
+            <button class="work__tab-nav-btn work__tab-nav-btn--prev" aria-label="Previous section">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+              <span>Prev</span>
+            </button>
+            <span class="work__tab-counter"></span>
+            <button class="work__tab-nav-btn work__tab-nav-btn--next" aria-label="Next section">
+              <span>Next</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+          <div class="work__tab-links"></div>
+        </div>
+      </div>
     </div>
 
     <div class="work__github">

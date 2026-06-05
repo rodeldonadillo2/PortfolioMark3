@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="550" viewBox="0 0 800 550">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#efefef"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="550" fill="url(#bg)" rx="0"/>
+  <rect x="200" y="155" width="400" height="240" rx="12" fill="#d4d4d4" stroke="#c0c0c0" stroke-width="1"/>
+  <rect x="260" y="195" width="280" height="160" rx="4" fill="#cacaca"/>
+  <circle cx="230" cy="175" r="5" fill="#b0b0b0"/>
+  <circle cx="250" cy="175" r="5" fill="#b0b0b0"/>
+  <circle cx="270" cy="175" r="5" fill="#b0b0b0"/>
+  <text x="400" y="420" font-family="'Space Mono',monospace" font-size="14" fill="#8a8a8a" text-anchor="middle" font-weight="700">Project 3 ? Overview</text>
+  <text x="400" y="445" font-family="'DM Sans',sans-serif" font-size="12" fill="#a0a0a0" text-anchor="middle">Replace with actual screenshot</text>
+</svg>

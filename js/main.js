@@ -180,6 +180,245 @@
   /* =========================================================
      REVEAL ON SCROLL
   ========================================================= */
+  /* =========================================================
+     BELT CAROUSEL
+  ========================================================= */
+  const belt = document.querySelector(".work__grid");
+
+  if (belt) {
+    let beltInterval = null;
+    let beltPaused = false;
+    const beltSpeed = 1.2; // pixels per frame (~60fps → ~72px/s)
+
+    function beltScroll() {
+      if (beltPaused) return;
+      const maxScroll = belt.scrollWidth - belt.clientWidth;
+      if (maxScroll <= 0) return;
+      belt.scrollLeft += beltSpeed;
+      if (belt.scrollLeft >= maxScroll) {
+        belt.scrollLeft = 0;
+      }
+    }
+
+    function beltStart() {
+      if (beltInterval) return;
+      beltInterval = setInterval(beltScroll, 16);
+    }
+
+    function beltStop() {
+      if (beltInterval) {
+        clearInterval(beltInterval);
+        beltInterval = null;
+      }
+    }
+
+    if (window.innerWidth > 1000) {
+      beltStart();
+    }
+
+    belt.addEventListener("mouseenter", () => { beltPaused = true; beltStop(); });
+    belt.addEventListener("mouseleave", () => {
+      beltPaused = false;
+      if (window.innerWidth > 1000) beltStart();
+    });
+
+    // Arrow buttons
+    const arrowLeft = document.querySelector(".work__arrow--left");
+    const arrowRight = document.querySelector(".work__arrow--right");
+
+    if (arrowLeft) {
+      arrowLeft.addEventListener("click", () => {
+        belt.scrollBy({ left: -340, behavior: "smooth" });
+      });
+    }
+    if (arrowRight) {
+      arrowRight.addEventListener("click", () => {
+        belt.scrollBy({ left: 340, behavior: "smooth" });
+      });
+    }
+
+    // Re-evaluate on resize
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 1000 && !beltPaused) beltStart();
+      else beltStop();
+    });
+  }
+
+  /* =========================================================
+     PROJECT TAB PANEL
+  ========================================================= */
+  const tabPanel = document.getElementById("workTabPanel");
+  const tabImg = tabPanel.querySelector(".work__tab-image img");
+  const tabTitle = tabPanel.querySelector(".work__tab-title");
+  const tabTags = tabPanel.querySelector(".work__tab-tags");
+  const tabSectionTitle = tabPanel.querySelector(".work__tab-section-title");
+  const tabSectionText = tabPanel.querySelector(".work__tab-section-text");
+  const tabCounter = tabPanel.querySelector(".work__tab-counter");
+  const tabPrev = tabPanel.querySelector(".work__tab-nav-btn--prev");
+  const tabNext = tabPanel.querySelector(".work__tab-nav-btn--next");
+  const tabLinks = tabPanel.querySelector(".work__tab-links");
+
+  let activeProject = null;
+  let currentSection = 0;
+
+  const projectData = [
+    {
+      title: "Project Name",
+      tags: ["React", "Node.js", "CSS"],
+      liveUrl: "Place_the_LIVE_URL_HERE",
+      sourceUrl: "https://github.com/rodeldonadillo2",
+      sections: [
+        {
+          title: "Overview",
+          text: "Explain the project at a high level — what it does, who it's for, and why you built it.",
+          image: "images/p1-overview.svg"
+        },
+        {
+          title: "Telegram Order Notifications",
+          text: "Describe how you integrated Telegram bot API for real-time order alerts. Mention the automation flow, triggers, and how it reduced response time for the client.",
+          image: "images/p1-telegram-alerts.svg"
+        },
+        {
+          title: "Excel Automation Scripts",
+          text: "Walk through the automated scripts that process Excel reports — data extraction, formatting, scheduling, and how it eliminated manual data entry.",
+          image: "images/p1-excel-automation.svg"
+        }
+      ]
+    },
+    {
+      title: "Project Name",
+      tags: ["HTML / CSS / JS", "API"],
+      liveUrl: "Place_the_LIVE_URL_HERE",
+      sourceUrl: "https://github.com/rodeldonadillo2",
+      sections: [
+        {
+          title: "Overview",
+          text: "Explain the project at a high level — what it does, who it's for, and why you built it.",
+          image: "images/p2-overview.svg"
+        },
+        {
+          title: "Section Name",
+          text: "Detailed breakdown of a specific feature or implementation detail.",
+          image: "images/p2-feature.svg"
+        }
+      ]
+    },
+    {
+      title: "Project Name",
+      tags: ["React", "CRM Integration", "AI"],
+      liveUrl: "Place_the_LIVE_URL_HERE",
+      sourceUrl: "https://github.com/rodeldonadillo2",
+      sections: [
+        {
+          title: "Overview",
+          text: "Explain the project at a high level — what it does, who it's for, and why you built it.",
+          image: "images/p3-overview.svg"
+        },
+        {
+          title: "Section Name",
+          text: "Detailed breakdown of a specific feature or implementation detail.",
+          image: "images/p3-feature.svg"
+        },
+        {
+          title: "Another Feature",
+          text: "Continue explaining more features — each section can show a different screenshot.",
+          image: "images/p3-another.svg"
+        }
+      ]
+    }
+  ];
+
+  function renderSection() {
+    const data = projectData[activeProject];
+    if (!data) return;
+    const section = data.sections[currentSection];
+    if (!section) return;
+
+    tabImg.src = section.image;
+    tabImg.alt = `${data.title} — ${section.title}`;
+    tabSectionTitle.textContent = section.title;
+    tabSectionText.textContent = section.text;
+    tabCounter.textContent = `${currentSection + 1} / ${data.sections.length}`;
+
+    tabPrev.disabled = currentSection === 0;
+    tabNext.disabled = currentSection === data.sections.length - 1;
+  }
+
+  function showProjectTab(index) {
+    const data = projectData[index];
+    if (!data) return;
+
+    // Same project clicked — close
+    if (activeProject === index && tabPanel.classList.contains("work__tab-panel--open")) {
+      tabPanel.classList.remove("work__tab-panel--open");
+      tabPanel.addEventListener("transitionend", function handler(e) {
+        if (e.propertyName === "opacity") {
+          if (!tabPanel.classList.contains("work__tab-panel--open")) {
+            tabPanel.style.display = "none";
+          }
+          tabPanel.removeEventListener("transitionend", handler);
+        }
+      });
+      activeProject = null;
+      return;
+    }
+
+    activeProject = index;
+    currentSection = 0;
+
+    tabTitle.textContent = data.title;
+
+    tabTags.innerHTML = data.tags.map(t =>
+      `<span class="work-card__tag">${t}</span>`
+    ).join("");
+
+    tabLinks.innerHTML = `
+      <a href="${data.liveUrl}" target="_blank" rel="noopener" class="work-card__btn">Live site →</a>
+      <a href="${data.sourceUrl}" target="_blank" rel="noopener" class="work-card__btn work-card__btn--gh">Source ↗</a>
+    `;
+
+    renderSection();
+
+    // Reveal panel with transition
+    tabPanel.style.display = "block";
+    tabPanel.getBoundingClientRect(); // force reflow so transition plays
+    tabPanel.classList.add("work__tab-panel--open");
+
+    setTimeout(() => {
+      tabPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }, 100);
+  }
+
+  function goToPrevSection() {
+    if (currentSection > 0) {
+      currentSection--;
+      renderSection();
+    }
+  }
+
+  function goToNextSection() {
+    const data = projectData[activeProject];
+    if (data && currentSection < data.sections.length - 1) {
+      currentSection++;
+      renderSection();
+    }
+  }
+
+  tabPrev.addEventListener("click", goToPrevSection);
+  tabNext.addEventListener("click", goToNextSection);
+
+  // Card click → open tab
+  document.querySelectorAll(".work-card").forEach((card) => {
+    card.addEventListener("click", (e) => {
+      if (e.target.closest("a")) return;
+      const index = parseInt(card.dataset.project, 10) - 1;
+      showProjectTab(index);
+    });
+  });
+
+  /* =========================================================
+     REVEAL ON SCROLL
+  ========================================================= */
   const revealItems = document.querySelectorAll(
     ".section__header, .service-card, .tool-badge, .about__text, .about__stats, .contact__form, .work-card, .work__github"
   );

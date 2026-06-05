@@ -156,15 +156,15 @@ The hero image system uses a full-bleed cinematic approach:
 </section>
 ```
 
-## Known Issues — Pending Fix
+## Known Issues — Resolved
 
-### Hero transition is not smooth (May 20, 2026) — FIX PLANNED
-**Root cause:** `filter: blur(3px)` applied to the composite image during fade-out creates an uneven crossfade. The blur animates at a different visual rate than opacity, making the transition feel janky.
-**Fix:** Remove `filter` from all hero image hover rules. Use pure opacity crossfade only. Add `transition-delay: 80ms` to incoming image states so the outgoing image starts fading first.
+### Hero transition not smooth (May 20, 2026) — FIXED June 4-5, 2026
+**Root cause:** `filter: blur(3px)` was applied to composite image fade-out.
+**Fix:** Removed all `filter: blur()` from hero image rules. Pure opacity crossfade with `transition-delay: 80ms` on incoming images. No remaining blur on hero images.
 
-### Hero image appears off-center / one-sided (May 20, 2026) — FIX PLANNED
-**Root cause:** `.hero__arms` uses `left: 0; right: 0` stretch positioning. While `.hero__image` is technically centered within the stage via `left: 50%; transform: translateX(-50%)`, the container itself may drift if viewport width is odd or if there is a scrollbar offset. Additionally, if `arm-automail.png` and `arm-human.png` have asymmetric canvas padding (e.g., extra space on the right), they will appear off-center regardless of CSS.
-**Fix:** Change `.hero__arms` to `left: 50%; transform: translateX(-50%); width: min(680px, 72vw)`. Check PNG canvas symmetry after applying the fix.
+### Hero image off-center (May 20, 2026) — FIXED June 4-5, 2026
+**Root cause:** `.hero__arms` used `left: 0; right: 0` stretch positioning.
+**Fix:** Changed to `left: 50%; transform: translateX(-50%); width: min(1840px, 96vw)`. Centered on viewport midpoint. Confirmed working in current `style.css`.
 
 ---
 
@@ -182,7 +182,7 @@ The hero image system uses a full-bleed cinematic approach:
 
 ## Phase 2 — Hero Interaction
 
-**Status: In Progress — two issues identified, fixes planned**
+**Status: Completed**
 
 Goal:
 
@@ -197,16 +197,8 @@ Completed:
 - Quote bar coded at the bottom.
 - All section styles complete (services, tools, about, contact, footer).
 - Responsive breakpoints set at 1100px, 900px, 620px, 420px.
-
-Remaining before Phase 2 is complete:
-
-1. **Fix hero image transition** — remove `filter: blur()`, use pure opacity crossfade with `transition-delay: 80ms` on incoming images.
-2. **Fix hero image centering** — change `.hero__arms` to use `left: 50%; transform: translateX(-50%)` with a controlled width.
-3. Drop three PNG images into `images/` folder and test in Live Server.
-4. Confirm figure renders centered and symmetric on both hover states.
-5. Confirm join circle lands near the hands in the image.
-6. Confirm quote bar reads cleanly at the bottom.
-7. Test on mobile (900px, 620px, 420px breakpoints).
+- **Hero crossfade fixed** — removed `filter: blur()`, pure opacity transition with `transition-delay: 80ms`.
+- **Hero centering fixed** — `.hero__arms` uses `left: 50%; transform: translateX(-50%)` with `width: min(1840px, 96vw)`.
 
 Visual Direction:
 
@@ -221,7 +213,7 @@ Visual Direction:
 
 ## Phase 3 — Services and Work Sections
 
-**Status: Completed — June 4, 2026**
+**Status: Completed — June 5, 2026**
 
 Goal:
 
@@ -230,23 +222,26 @@ Refine the service cards, work/case-study area, and proof points after the hero 
 Completed tasks:
 
 - Added stronger service messaging.
-- Added portfolio/project cards with 3-column grid, hover lift, and image zoom.
+- Added portfolio/project cards with belt carousel (horizontal auto-scroll, hover/click pause, arrow navigation).
+- Added inline tab panel for each project (two-column layout below belt with large preview, description, tags, links).
 - Added GitHub profile CTA below project cards.
 - Added tech tags, live site button, and source code button per project card.
-- Responsive breakpoints set (3-col → 2-col → 1-col).
+- Responsive breakpoints set for belt (3→2→1 cards visible, arrows hidden on mobile).
 - Tools & Stack section relocated to sit between Work and About.
 - All new elements added to JS scroll-reveal observer.
+- **Tab panel uses `display: none` when closed** — no white space below belt in neutral state. Opens with smooth fade+slide via forced-reflow JS pattern.
 
 Pending tasks (user-owned):
 
-- Replace placeholder thumbnails, URLs, and repo links with real project data.
-- Upload professional headshot for About section.
+- Replace placeholder images and live site URLs with real project data.
+- Replace `placeholder-profile.png` with actual professional headshot.
+- Replace `cv-rodel-donadillo.pdf` with real CV file.
 
 ---
 
 ## Phase 4 — About and Trust
 
-**Status: In Progress — photo integration planned**
+**Status: Done — photo integrated, CV download added**
 
 Goal:
 
@@ -258,15 +253,21 @@ Completed tasks:
 - Connected remote experience to business outcomes.
 - Made the Equivalent Exchange philosophy professional, not fan-site heavy.
 - Stats section added (4+ years, reach growth, satisfaction, claims processed).
+- Professional headshot added with slight overlay on stat cards.
+- CV download button added with placeholder PDF.
+- Placeholder images created for project cards.
+- Git repo initialized and pushed to GitHub.
 
 In progress:
 
-- Professional headshot placement in About section (photo with slight overlay on stat cards — HTML + CSS ready, awaiting user asset).
+- Belt carousel + detail modal (next build).
 
 Planned tasks:
 
+- Replace placeholder images with real project screenshots.
+- Replace profile placeholder with real headshot.
+- Replace CV placeholder with real PDF.
 - Add testimonials or proof points if available.
-- Upload real photo asset to `images/` folder.
 
 ---
 

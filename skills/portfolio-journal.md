@@ -79,6 +79,181 @@ Briefly explain what changed.
 
 ## Journal Entries
 
+## June 5, 2026 - Tab panel hidden when closed (removes empty white space below belt)
+
+**Status:** Done
+
+### Summary
+Tab panel now uses `display: none` by default instead of just `opacity: 0`. This eliminates the large white box that appeared below the project belt when no project was selected. The forced-reflow pattern in JS preserves the smooth fade+slide transition when opening.
+
+### Changed
+- `.work__tab-panel` CSS: added `display: none`, changed `margin: 32px auto 0` to `margin: 0`
+- `.work__tab-panel--open` CSS: added `display: block`, `margin-top: 32px`
+- `showProjectTab()` JS: on open -> `display: block`, force reflow via `getBoundingClientRect()`, then add open class
+- `showProjectTab()` JS: on close -> remove open class, wait for `opacity` transitionend, then `display: none`
+
+### Why
+- Large empty white space below project belt in neutral state was visually distracting
+- Display:none takes zero layout space, eliminating the gap entirely
+
+### Files Affected
+- `css/style.css`
+- `js/main.js`
+- `skills/portfolio-journal.md`
+- `skills/portfolio-phases.md`
+
+### Decisions Made
+- Used forced-reflow pattern so the opacity/transform transition still animates smoothly on open
+- transitionend on "opacity" ensures display:none is set only after the fade-out completes
+- Added class check in transitionend handler — if panel was re-opened during close animation, display stays "block"
+
+### Next Actions
+- None — functional change complete
+
+---
+
+## June 5, 2026 - Multi-section tab panel with per-section images + labeled placeholders
+
+**Status:** Done
+
+### Summary
+Tab panel now has section-by-section navigation with Prev/Next buttons and per-section images. Each project in `projectData` has a `sections` array where each entry contains title, text, and image. Clicking Next/Prev changes both the explanation text and the image simultaneously. Created 8 labeled placeholder SVGs for all project sections.
+
+### Changed
+- Replaced single `desc` field with `sections[]` array in project data
+- Added `.work__tab-section-title`, `.work__tab-section-text`, `.work__tab-nav`, `.work__tab-nav-btn`, `.work__tab-counter` to HTML + CSS
+- `renderSection()` updates image + section title + section text + counter + button states
+- `goToPrevSection()` / `goToNextSection()` navigate through sections
+- Created 8 labeled placeholder images in `images/` (p1-overview, p1-telegram-alerts, p1-excel-automation, p2-overview, p2-feature, p3-overview, p3-feature, p3-another)
+
+### Why
+- User wanted to explain different features of each project with corresponding screenshots
+
+### Files Affected
+- `index.html`
+- `css/style.css`
+- `js/main.js`
+- `images/p1-overview.svg` (new)
+- `images/p1-telegram-alerts.svg` (new)
+- `images/p1-excel-automation.svg` (new)
+- `images/p2-overview.svg` (new)
+- `images/p2-feature.svg` (new)
+- `images/p3-overview.svg` (new)
+- `images/p3-feature.svg` (new)
+- `images/p3-another.svg` (new)
+- `skills/portfolio-journal.md`
+
+### How to add more sections (for the user)
+To add another step to any project:
+1. Open `js/main.js`
+2. Find the project in `projectData`
+3. Add a new object inside its `sections` array:
+   ```js
+   { title: "Step Name", text: "Your explanation here...", image: "images/your-screenshot.svg" }
+   ```
+4. Drop the matching screenshot into `images/`
+5. That's it — the Prev/Next buttons and counter will handle it automatically
+
+---
+
+## June 5, 2026 - Belt carousel + inline tab panel (replaced modal)
+
+**Status:** Done
+
+### Summary
+Converted the static 3-column project grid into a horizontal auto-scrolling belt carousel with arrow navigation and fade edge overlays. Added an inline tab panel below the belt that shows selected project details — replaces the earlier full-screen modal approach for a cleaner, non-obtrusive experience.
+
+### Changed
+- `.work__grid` changed from CSS grid to flexbox with `overflow-x: auto` and `scroll-snap`
+- Added `.work__belt-wrap` container with relative positioning
+- Added `.work__arrow--left` and `.work__arrow--right` buttons (circular, blur backdrop, show on belt hover, hidden on mobile)
+- Added `.work__belt-fade` gradient overlays on each side to hint at more content
+- Added `.work__tab-panel` inline below the belt — two-column layout (image left, text right)
+- Tab panel slides in with fade+translate animation, toggles open/close on card click
+- Clicking same card again closes the panel
+- All modal HTML/CSS/JS completely removed and replaced with tab panel
+- JS auto-scroll (`setInterval` ~72px/s loops to start), pauses on hover/click
+- Arrow buttons scroll by 340px with smooth behavior
+- Project data stored in JS array — populates tab panel dynamically
+- Auto-scroll only activates above 1000px viewport (disabled on mobile)
+- Responsive: 2 cards visible at 1000px → 1 card at 760px, arrows hidden on mobile
+
+### Why
+- Belt carousel makes the portfolio feel dynamic while saving vertical space
+- Tab panel keeps the detail view inline — no overlay, no body scroll lock, feels more integrated
+
+### Files Affected
+- `index.html`
+- `css/style.css`
+- `js/main.js`
+- `skills/portfolio-journal.md`
+- `skills/portfolio-phases.md`
+
+### Decisions Made
+- Tab panel replaces modal per user request — cleaner UX, stays within the page flow
+- Click same card toggles panel closed — intuitive toggle behavior
+- Panel scrolls into view on open if off-screen
+- Auto-scroll loops to beginning rather than reversing
+
+### Open Questions
+- None
+
+### Next Actions
+- User to replace placeholder images and URLs with real project data
+- User to replace profile photo and CV with real files
+
+---
+
+## June 5, 2026 - Photo overlay, CV download, placeholders, git init
+
+**Status:** Done
+
+### Summary
+Added profile photo to About section with slight overlay on stat cards. Added CV download button with placeholder PDF. Created SVG placeholder images for project thumbnails. Initialized git repo and pushed to GitHub.
+
+### Changed
+- Added `.about__photo` inside `.about__stats` with circular frame, white border, subtle shadow, and `margin-bottom: -24px` for overlay effect
+- Added `.about__cv-btn` download button (black, mono font, download icon SVG, hover invert)
+- Created `images/cv-rodel-donadillo.pdf` placeholder
+- Created SVG placeholder images for 3 project cards (`placeholder-project-1/2/3.svg`)
+- User replaced profile placeholder from `.svg` to `.png` — reference updated
+- User filled in GitHub profile URL across all source links and GitHub CTA
+- Created `.gitignore`
+- Initialized git repo, committed all 14 files, pushed to `github.com/rodeldonadillo2/PortfolioMark3.git`
+
+### Why
+- Profile photo adds personal connection while maintaining professional Apple-like look
+- CV download makes it easy for potential clients/employers to get a resume
+- Placeholders allow layout to render correctly before real assets are ready
+- Git push saves work before next feature build (belt carousel + detail modals)
+
+### Files Affected
+- `index.html`
+- `css/style.css`
+- `images/placeholder-profile.png`
+- `images/placeholder-project-1.svg`
+- `images/placeholder-project-2.svg`
+- `images/placeholder-project-3.svg`
+- `images/cv-rodel-donadillo.pdf`
+- `.gitignore`
+- `skills/portfolio-journal.md`
+- `skills/portfolio-phases.md`
+
+### Decisions Made
+- Photo uses negative margin overlay instead of absolute positioning — keeps it in the document flow
+- CV button placed in About section (after email/LinkedIn) — most natural context for a resume download
+- GitHub profile URL set to `https://github.com/rodeldonadillo2`
+- Live site URLs remain as `Place_the_LIVE_URL_HERE` — user to fill in with real project URLs
+
+### Open Questions
+- None
+
+### Next Actions
+- Build belt carousel for project cards (horizontal scroll with auto-play, pause on hover/click)
+- Build detail modal for each project (full-screen overlay with detailed description, large screenshot, tech stack, links)
+
+---
+
 ## June 4, 2026 - Featured Work showcase added, Tools section relocated, About photo planned
 
 **Status:** Done — awaiting photo asset
